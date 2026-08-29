@@ -37,18 +37,43 @@ Get-ChildItem $CLAUDIA_ROOT -Recurse -Include *.mjs,*.json,*.ps1,*.md | Select-S
 
 The file that references `conversion-report.mjs` alongside other scripts is the supervisor list. Note its path for Tasks 5 and 6.
 
-- [ ] **Step 3: Initialise a private git repo so every later task can commit**
+- [ ] **Step 3: Audit the EXISTING repo at `D:\Users\CoventryCleans` for secrets**
+
+A `.git` already exists at the profile root (confirmed 29/08/2026), and `Api Keys.txt` sits in that same root. Before relying on the repo, run at the repo root:
 
 ```powershell
-cd $CLAUDIA_ROOT
-git init
-# Keep secrets out before the first commit:
-Add-Content .gitignore ".env`n*.secret*`n*token*`nnode_modules/"
-git add -A
-git commit -m "chore: snapshot Claudia system before 2026-08-29 fixes"
+git remote -v                                          # local-only, or already pushed somewhere?
+git ls-files | Measure-Object | Select-Object Count    # how much is tracked?
+git ls-files | Select-String -Pattern "api key|apikey|\.env|secret|token|credential" -CaseSensitive:$false
+git log --all --oneline -- "Api Keys.txt"              # ever committed, even if since deleted?
+git log --all --diff-filter=A --name-only --format="%h" | Select-String -Pattern "\.env|api key|secret|token" -CaseSensitive:$false
 ```
 
-Optionally push to a new private GitHub repo (e.g. `takid/claudia-system`) so future remote sessions can work on this code directly. Every "Commit" step below commits in this repo.
+Decision tree:
+- **No hits anywhere:** clean — just add the ignore rules (next step).
+- **Tracked now:** `.gitignore` does not untrack existing files — run `git rm --cached "Api Keys.txt"` (and any `.env`), then add ignore rules and commit.
+- **Ever committed:** treat every key in the file as burned — **rotate them all** (Anthropic, Buffer, Connecteam, Google, etc.); rotation is the real fix. Then purge history with `git filter-repo --path "Api Keys.txt" --invert-paths` (`pip install git-filter-repo`) — before the repo is ever pushed anywhere if it is local-only; rotate FIRST, purge, then force-push if a remote already exists.
+
+- [ ] **Step 4: Add ignore rules and get secrets out of plaintext**
+
+```powershell
+Add-Content .gitignore "Api Keys.txt`n.env`n.env.*`n*.secret*`nnode_modules/"
+```
+
+Move the values from `Api Keys.txt` into an ignored `.env` (or Windows Credential Manager) and delete the txt — after Task 1, MCP write tools can reach the whole profile tree, so a plaintext key file at the root is exposed even untracked.
+
+- [ ] **Step 5: Check the repo's scope**
+
+If Step 3's file count shows the repo tracks the whole profile dir (browser data, downloads, client documents) rather than just the jarvis-v3/Claudia directories, either re-scope it to the Claudia folder or switch the root `.gitignore` to allowlist style (`*` ignored, Claudia dirs explicitly un-ignored) so a stray `git add -A` can't sweep in personal data.
+
+- [ ] **Step 6: Commit the hygiene pass, then push privately**
+
+```powershell
+git add -A
+git commit -m "chore: secrets hygiene + snapshot before 2026-08-29 fixes"
+```
+
+Push to a **private** GitHub repo (e.g. `takid/claudia-system`) — only after Steps 3–5 are clean — so future remote sessions can work on this code directly. Every "Commit" step below commits in this repo.
 
 ---
 
