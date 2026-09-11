@@ -2,9 +2,13 @@
   "name": "brainstorm-server-tests",
   "version": "1.0.0",
   "scripts": {
-    "test": "node server.test.js"
+    "test": "node server.test.js",
+    "test:playwright": "playwright test"
   },
   "dependencies": {
     "ws": "^8.19.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0"
   }
 }
