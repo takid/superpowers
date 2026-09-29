@@ -51,6 +51,13 @@ first job.
 - Offer the recurring slot, specifically. A named day, a named time, the same cleaner
 - If they say not yet, ask permission to check back in a month and put it in the system
 
+**The trigger for this is half-built already.** The Make account holds a webhook named
+`CleanShub — Job Completed` that is enabled but attached to no scenario, so it accepts a POST
+and discards it. Wiring it to a scenario gives you the completion notification and the 48-hour
+conversion contact automatically, which is the highest-leverage automation available in this
+module. Details in
+[`skills/coventry-cleans/publishing.md`](../../skills/coventry-cleans/publishing.md).
+
 ## The lifecycle
 
 After conversion, the relationship runs on a sequence. Automated where it can be, human

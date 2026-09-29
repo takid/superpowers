@@ -38,6 +38,44 @@ Two shared references sit underneath all of them:
 - [reference/data-model.md](reference/data-model.md) — the records every module reads and writes
 - [reference/kpi-dictionary.md](reference/kpi-dictionary.md) — one definition per number, so a figure means the same thing everywhere
 
+And two live operating files sit alongside, in
+[`skills/coventry-cleans/`](../../skills/coventry-cleans/):
+
+- **`pricing.md`** — the single source for every price that appears in public
+- **`publishing.md`** — the single source for how content reaches a platform
+
+Those two are not documentation. They are read at runtime by the skills, so a change there
+changes what the business actually does.
+
+## Current state, 2026-09-29
+
+| Module | State |
+|--------|-------|
+| 00 Architecture | Written. Functions and cadence not yet running |
+| 01 Sales | **Inbound is the biggest gap in the business.** No response SLA, no missed-call text, no qualification capture, no quoting system. Outbound exists via `daily-hunter` |
+| 02 Operations | Written. No service standard documents yet. Productive hour ratio unmeasured |
+| 03 Cleaner | Written. Employment status needs a decision with advice |
+| 04 Customer | Nothing running. The 48-hour conversion contact is the highest-value missing piece |
+| 05 Finance | **Cost model built.** Floor set at 30%, target 40%. Payment chasing runs |
+| 06 Claudia | Not started. Correctly blocked until 01–05 produce data |
+
+**Done since v1.0:**
+
+- Cost model built from a real cleaner rate of £12.71/hr. Fully loaded £16.16 per paid hour,
+  £18.67 per charged hour, floor £29 and target £34 per charged-hour equivalent
+- Live rate card confirmed: weekly £23/hr, fortnightly £25, one-off £27. None reaches the
+  floor all-in; weekly sits at 11.7%
+- Ten defects fixed across the five custom skills, including a £15/hr price that never existed
+- Publishing routes mapped. Two of eleven Make webhooks are real
+
+**The three open decisions**, in order of value:
+
+1. **Flatten the frequency discount.** Worth £33,800 to £65,000 a year across fifty weekly
+   customers. Currently your best customers carry your worst margin
+2. **Set where the floor lands** and stage the increase across two annual reviews
+3. **Measure the productive hour ratio.** Two weeks of timekeeping. Every margin number in
+   the business rests on an assumption until then
+
 ## How to read this
 
 Each module has the same four parts.
@@ -56,6 +94,12 @@ feeds the next.
 Sales OS response rules and the pricing grid. Finance OS true labour cost and the
 margin floor. These two together stop you selling work that loses money and losing
 work you already paid to generate. Nothing else matters until these are live.
+
+> **Status: half done.** The cost model and margin floor are built (05), and the pricing grid
+> exists in `pricing.md`. The Sales OS response rules are not built — there is still no
+> missed-call text, no response SLA, and no qualification capture. That half is now the single
+> highest-return build in the business, and the missed-call text is buildable this week with
+> Twilio and Make, both already connected.
 
 **Phase 2, weeks 5 to 8. Make delivery repeatable.**
 Operations OS service standards and the job record. Cleaner OS onboarding and Level 1

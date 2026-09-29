@@ -83,16 +83,28 @@ of those a week is a lost day of capacity.
 
 ## Pricing
 
-Pricing rules live here. The cost inputs that set them live in
-[05 Finance OS](05-finance-os.md). Do not set a price in this module without checking
-it clears the margin floor in 05.
+**The live grid lives in
+[`skills/coventry-cleans/pricing.md`](../../skills/coventry-cleans/pricing.md).** That file is
+the single source for every price that appears in public — quotes, the website, social posts,
+ads, Google Business. Pricing *rules* live here. The cost inputs that set them live in
+[05 Finance OS](05-finance-os.md).
+
+Do not set a price without checking it clears the 30% margin floor in 05.
+
+**Where things stand, 2026-09-29.** Live rates are weekly £23/hr, fortnightly £25, one-off
+£27. None reaches the floor on an all-in basis — weekly is at 11.7% against a 30% floor. The
+floor needs £29 per charged-hour equivalent and the target is £34. Full position in 05.
+
+**If a skill and the website disagree on a price, the website wins** and `pricing.md` gets
+corrected. The absence of that rule let the social skills advertise £15/hr — a price that
+never existed — for months.
 
 **Structure of the grid.** Build one table per service, priced by the driver that
 actually determines time:
 
 | Service | Priced by | Frequency discount |
 |---------|-----------|--------------------|
-| CC-HOME-01 Regular clean | Bedrooms + bathrooms, fixed hours | Weekly best, fortnightly next, monthly least |
+| CC-HOME-01 Regular clean | Bedrooms + bathrooms, fixed hours | **One rate across frequencies.** The saving comes from the shorter time a regularly cleaned property needs, not from a second discount on the rate. See 05 |
 | CC-HOME-02 Deep clean | Bedrooms + bathrooms + condition band | None, one-off by nature |
 | CC-HOME-03 End of tenancy | Bedrooms + bathrooms + oven/carpets as add-ons | None |
 | CC-COM-01 Office standard | Floor area and visit frequency | Contract length, not frequency |
@@ -112,6 +124,14 @@ actually determines time:
 3. **The floor is a floor.** Below the margin floor in 05, the answer is no. Not a
    smaller discount. No. A job at break-even consumes the capacity that a profitable job
    needed, and it sets the price you will be held to at renewal.
+4. **Quote per visit, never per hour.** An hourly rate invites the one comparison you cannot
+   win, the £12/hr cash cleaner, and it hands back every gain you make on route density as a
+   smaller bill instead of margin. The website may carry a headline rate for search purposes;
+   quotes and social posts price the job. See the objection handling below.
+5. **Survey-priced work still needs an internal grid.** Deep clean, end of tenancy, office and
+   short let are quoted after a survey, and nothing is published. But "we'll quote it" is not a
+   method — without an internal grid of time standard × condition band × rate, two similar
+   properties get two different prices depending on who quoted and what mood they were in.
 
 **Commercial and contract pricing** always follows a site visit. Never quote an office,
 a care setting, or a post-construction job from a phone description. The survey is not a

@@ -25,23 +25,28 @@ hours you pay for that are not charged to anybody.
 
 ## True cost per productive hour
 
-Build this once, properly, and every price in the business becomes a decision instead of a
-guess.
+**Built 2026-09-29.** The live model is in
+[`skills/coventry-cleans/pricing.md`](../../skills/coventry-cleans/pricing.md), which is the
+single source for every price that appears in public. This section explains the method and
+records the result.
 
 **Step 1. On-costs on the hourly rate.**
 
-| Layer | What it is | Rough weight |
-|-------|-----------|--------------|
-| Base hourly rate | Must meet the National Living Wage for the age band. Verify the current April rate | 100% |
-| Holiday pay | 5.6 weeks statutory, which accrues at 12.07% of hours worked for irregular-hours staff | +12% |
-| Employer National Insurance | Applies above the secondary threshold. Both the rate and the threshold have moved recently. Verify | + verify |
-| Pension | Employer minimum on qualifying earnings once auto-enrolment is triggered | +3% of qualifying earnings |
-| Sick, training, and induction time | Paid hours that generate no revenue | + your actual |
+| Layer | What it is | Coventry Cleans, per paid hour |
+|-------|-----------|-------------------------------|
+| Base hourly rate | National Living Wage for the age band. Verify each April | **£12.71** |
+| Holiday pay | 5.6 weeks statutory, accruing at 12.07% of hours worked for irregular-hours staff | £14.24 |
+| Employer National Insurance | Above the secondary threshold. Rate and threshold both move. Verify | £15.81 |
+| Pension | Employer minimum on qualifying earnings once auto-enrolment is triggered | £16.16 |
+| Sick, training, and induction time | Paid hours generating no revenue | + your actual |
 
-As a planning figure, the fully loaded cost of an employed cleaner is meaningfully above
-their headline rate once holiday, NI, and pension are included. Work out your own
-multiplier from current rates and write it down. Then use that number, not the base rate,
-everywhere.
+**Fully loaded: ~£16.16 per paid hour**, against a £12.71 headline. Range £15.80 to £16.35
+depending on annual earnings, since the effective NI and pension percentages move with hours
+worked.
+
+**The base rate is the National Living Wage, so there is no headroom beneath it.** The cost
+floor rises every April whether prices do or not. That makes the annual price review later in
+this module structural, not optional.
 
 **Step 2. Productive hours, not paid hours.**
 
@@ -58,6 +63,19 @@ rate suggests. This is exactly why route density in
 [02 Operations OS](02-operations-os.md) is a finance decision, not a logistics preference.
 Improving the productive ratio raises margin on work you already have, without raising a
 single price.
+
+**Coventry Cleans, working figures:**
+
+| Productive ratio | Cost per charged hour |
+|------------------|----------------------|
+| 0.90 | £17.96 |
+| **0.866 — current assumption** | **£18.67** |
+| 0.80 | £20.20 |
+
+**The 0.866 is an assumption, not a measurement, and it is the weakest number in the whole
+model.** It is also the one most within your control. Measuring it is an Operations
+responsibility: log check-in and check-out against paid hours for two full weeks and divide.
+Until that is done, every margin figure downstream carries the same uncertainty.
 
 **Step 3. The other direct costs.**
 
@@ -89,13 +107,54 @@ customer. Two things surface immediately, and both are usually surprising:
 
 ## The margin floor
 
-Set a minimum contribution margin. Write it down. It is a hard floor, not a target.
+**Set at 30% contribution. Target 40%.**
+
+| | Per charged-hour equivalent |
+|---|---|
+| Direct cost, labour only | £18.67 |
+| Direct cost, all-in with materials and travel | ~£20.30 |
+| **Hard floor, 30% contribution** | **£29** |
+| **Target, 40% contribution** | **£34** |
 
 Below the floor, the answer is no. This has to be an absolute rule rather than a judgement
 call, because every below-floor job arrives with a good reason attached: it fills a gap, it
 might lead to more, the customer is nice, it is better than an empty slot. An empty slot
 costs you the wage. A loss-making job costs you the wage plus the loss plus the capacity
 that a profitable job needed.
+
+### Where the business actually sits, 2026-09-29
+
+Live rate card: weekly £23/hr, fortnightly £25, one-off £27.
+
+| Tier | Rate | Contribution, labour only | **All-in** | vs floor |
+|------|------|---------------------------|-----------|----------|
+| Weekly | £23 | 18.8% | **11.7%** | £6 short |
+| Fortnightly | £25 | 25.3% | **18.8%** | £4 short |
+| One-off | £27 | 30.9% | **24.8%** | £2 short |
+
+**Nothing is loss-making. Nothing reaches the floor either.** Weekly at 11.7% leaves almost
+nothing for overhead, the CEO's time, or a quiet month. Break-even on the weekly tier sits at
+a productive ratio of 0.70, which is close enough to the current assumption that measuring it
+matters.
+
+### The frequency discount is being applied twice
+
+A weekly property is less dirty than a fortnightly one, so it takes **fewer hours**, and the
+customer already pays less per visit for that reason alone. Giving them a **lower hourly rate
+on top** is a second discount for the same benefit.
+
+The consequence: the customers with the highest lifetime value and the lowest acquisition cost
+— weekly recurring — carry the worst margin in the business. That is backwards.
+
+**The fix:** hold one rate across all frequencies and let the shorter duration be the
+customer's saving. Present per visit, so the comparison is £73 against £87 rather than £23
+against £25. Grid in
+[`pricing.md`](../../skills/coventry-cleans/pricing.md).
+
+**What closing the gap is worth.** A weekly 3-bed from roughly £60 a visit to the £29 floor is
+£676 a year per customer, or £33,800 across fifty. At the £34 target, £65,000. No new leads,
+no new cleaners, no extra marketing spend. It is the largest single gain available to the
+business, and it is largest on weekly customers precisely because their margin is thinnest.
 
 **Discount authority.** Tier 2 in [00 Architecture](00-architecture.md) allows a limited
 discount. Anything that breaks the floor is Tier 3, CEO only, and should be rare enough to
@@ -243,9 +302,13 @@ one.
 
 ## Definition of done
 
-- [ ] True cost per productive hour is calculated, written down, and dated
-- [ ] The productive hour ratio is measured, not assumed
-- [ ] Every service code has a known contribution margin
+- [x] True cost per productive hour is calculated, written down, and dated — 2026-09-29
+- [ ] The productive hour ratio is measured, not assumed — **currently assumed at 0.866**
+- [ ] Materials and consumables cost per job is measured, not estimated
+- [x] A margin floor exists — 30%, target 40%
+- [ ] Every service code has a known contribution margin — regular clean only so far
+- [ ] The frequency discount is applied once, not twice
+- [ ] Survey-priced services have an internal quoting grid
 - [ ] A margin floor exists and has been applied to refuse at least one job
 - [ ] Recurring domestic customers pay automatically, not manually
 - [ ] The chase ladder runs without anyone deciding to start it

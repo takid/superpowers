@@ -40,6 +40,16 @@ yours. Keep it separate from the domestic route map.
 - Booked hours this week
 - Utilisation: booked divided by available
 
+**Measure the productive hour ratio. This is the outstanding job in this module.**
+[05 Finance OS](05-finance-os.md) currently assumes 0.866 — roughly six billed hours in seven
+paid — and every margin figure in the business rests on that guess. It is the weakest number
+in the model and the one most within your control.
+
+To measure it: log check-in and check-out against paid hours for two full weeks, then divide
+billed hours by paid hours. Two weeks of honest timekeeping settles it. If the real figure is
+0.80 the margin floor rises from £29 to £31 per charged-hour equivalent, and the weekly tier
+is closer to break-even than anyone currently believes.
+
 Utilisation below target means you are paying for idle capacity. Above target means you
 have no slack for illness, overruns, or a same-day enquiry from a good customer. Both are
 expensive. Set a target band and schedule into it deliberately rather than filling until
