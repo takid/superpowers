@@ -1,0 +1,27 @@
+[
+  {
+    "id": "test_care_home_lead",
+    "prompt": "Run daily hunter and find care home leads in Coventry",
+    "expected": "Should search for care homes, qualify based on criteria, find contact details, and provide formatted lead profiles with personalized outreach messages"
+  },
+  {
+    "id": "test_estate_agent_lead",
+    "prompt": "Find estate agents in Coventry who need cleaning services",
+    "expected": "Should identify estate agents with multiple properties, check for urgency signals, and create partnership-focused outreach"
+  },
+  {
+    "id": "test_full_daily_report",
+    "prompt": "Generate today's daily hunter report for Coventry Cleans",
+    "expected": "Should execute multi-platform search, qualify leads, score them, and deliver complete daily report with 3-5 qualified leads and follow-up priorities"
+  },
+  {
+    "id": "test_landlord_targeting",
+    "prompt": "Search for landlords and property managers who might need end-of-tenancy cleaning",
+    "expected": "Should search Rightmove/Zoopla for letting agencies, identify portfolio landlords, and create leads with end-of-tenancy focus"
+  },
+  {
+    "id": "test_urgency_filtering",
+    "prompt": "Find businesses in Coventry with urgent cleaning needs right now",
+    "expected": "Should prioritize urgency indicators like recent openings, complaints, job postings, and renovation completions"
+  }
+]
