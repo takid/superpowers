@@ -5,19 +5,54 @@ quotes, the website, Google Business. No skill hardcodes a price. Every skill re
 file.
 
 Cost model built: **2026-09-29**, from a stated cleaner rate of £12.71/hr.
-Actual charge-out rate for standard cleans confirmed at **£23/hr**.
+Live rates read from coventrycleans.co.uk on 2026-09-29.
 
 ---
 
-## VERDICT 1: the advertised price is not the price you charge
+## The live rate card
 
-**This is the most urgent problem in the business, and it is free to fix.**
+From the website, which is the correct and authoritative source:
+
+| Frequency | Rate | Direction |
+|-----------|------|-----------|
+| Weekly housekeeping | from £23/hr | Cheapest — correct |
+| Fortnightly | from £25/hr | |
+| One-off | from £27/hr | Dearest — correct |
+
+**The tiering runs the right way.** Recurring is cheaper, one-off is dearer, which is exactly
+the logic in `docs/ccos/01-sales-os.md`. The website was already doing this properly.
+
+Published per-visit examples, consistent with £23/hr:
+
+| Property | Per session | Implied hours |
+|----------|-------------|---------------|
+| 3-bed semi, weekly | £55–70 | 2.4–3.0 hr |
+| 4-bed detached, weekly | £85–110 | 3.7–4.8 hr |
+
+**One ambiguity to resolve.** Two pages on the site appear to disagree about whether £23 is
+the weekly or the fortnightly rate. Confirm which, and make every page agree. Inconsistent
+prices across your own pages cost trust with customers and confuse search engines about what
+you actually charge.
+
+Survey-priced services — deep clean, end of tenancy, office, short let — are quoted after a
+free survey rather than published. That is the correct approach for condition-driven work and
+matches `docs/ccos/02-operations-os.md`. They still need an internal grid so quotes are
+consistent; see below.
+
+---
+
+## VERDICT 1: the social skills advertised a price that does not exist
+
+**This is free to fix and should be fixed today.**
 
 | | Standard clean |
 |---|---|
 | Advertised in every social post | **£15/hr** |
-| Actually charged | **£23/hr** |
-| Gap | **53%** |
+| Cheapest real rate, anywhere on the site | **£23/hr** |
+| Gap | **35% below the cheapest real price** |
+
+The £15 was never a Coventry Cleans price. The website has always been right; the skills
+were carrying a figure from nowhere.
 
 Every enquiry arrives anchored to £15 and gets quoted £23. That does three things, all bad:
 
@@ -32,32 +67,52 @@ Every enquiry arrives anchored to £15 and gets quoted £23. That does three thi
 Fix the advertised number to match reality today. It costs nothing and it is almost
 certainly worth more than any campaign running this quarter. See Rule 3 below.
 
-## VERDICT 2: £23/hr is viable but thin
+## VERDICT 2: every tier is above cost, none reaches the floor
 
-| Basis | Cost per charged hour | Contribution at £23 |
-|-------|----------------------|---------------------|
-| Labour only | £18.67 | **18.8%** |
-| Labour + materials + travel | ~£20.30 | **~11.7%** |
+Against £18.67 labour-only and ~£20.30 all-in per charged hour:
 
-Above cost, so the business is not bleeding on standard cleans. But **11.7% is well under
-the 30% hard floor** and far under the 40% target. It leaves almost nothing for overhead,
-your own time, or a bad month.
+| Tier | Rate | Contribution, labour only | **Contribution, all-in** |
+|------|------|---------------------------|--------------------------|
+| Weekly | £23 | 18.8% | **11.7%** |
+| Fortnightly | £25 | 25.3% | **18.8%** |
+| One-off | £27 | 30.9% | **24.8%** |
 
-Break-even sits at a productive ratio of 0.70. Above that you make something; below it you
-do not. Which makes measuring the real ratio urgent.
+Nothing is loss-making. But the hard floor is 30% and the target is 40%, so **all three tiers
+sit below the floor on an all-in basis.** Weekly at 11.7% leaves almost nothing for overhead,
+your own time, or a quiet month.
 
-## VERDICT 3: the other published prices are unverified and probably also stale
+To reach the 30% floor: weekly £29, fortnightly £29, one-off £29 per charged-hour equivalent.
+To reach the 40% target: £34.
 
-If the standard rate in the marketing copy was out by 53%, assume the rest is too.
+Break-even sits at a productive ratio of 0.70 on the weekly tier. Above that you make
+something; below it you do not. Measuring the real ratio is now urgent, because weekly is
+close enough to the line that the answer matters.
 
-| Published | Status |
-|-----------|--------|
-| Office clean, £18/hr | **Unverified.** At £18 against £18.67 cost this would be a loss. Confirm the real rate |
-| Deep clean, £120 | **Unverified.** At 6–8 hours this would be break-even at best. Confirm the real price |
-| End of tenancy | Never published. Confirm |
-| Airbnb / short let | Never published. Confirm |
+## VERDICT 3: the frequency discount is applied twice
 
-Do not publish any of these until the actual current price is confirmed.
+This is the subtle one, and it is why weekly is the thinnest tier.
+
+A weekly property is less dirty than a fortnightly one, so it takes **fewer hours**. The
+customer already pays less per visit for that reason alone. Then the rate card gives them a
+**lower hourly rate on top**. Two discounts for one benefit.
+
+The result is that your most valuable customers — the weekly recurring ones, the ones with the
+highest lifetime value and the lowest acquisition cost — carry your worst margin.
+
+**The fix: hold the hourly equivalent flat across frequencies and let the shorter duration be
+the customer's saving.** A weekly 3-bed at 2.5 hours and a fortnightly 3-bed at 3 hours,
+both at the same rate, already gives the weekly customer a cheaper visit without giving away
+margin. Present it per visit, so the comparison the customer makes is £58 against £69, not
+£23 against £25.
+
+## VERDICT 4: survey-priced services need an internal grid
+
+Deep clean, end of tenancy, office and short let are quoted after survey, which is correct.
+But "we'll quote it" is not a pricing method — without an internal grid, two similar
+properties get two different prices depending on who quoted and what mood they were in.
+
+Build the internal grid from time standard × condition band × rate, per the deep clean
+section below. Do not publish it. Use it on every quote.
 
 ---
 
@@ -165,24 +220,33 @@ from observed jobs, not from hope.
 
 ### CC-HOME-01 Regular clean — recurring, price shown per visit
 
-| Property | Time allowed | Today at £23/hr | At floor (£26.70/hr eq.) | **At target (£31/hr eq.)** |
-|----------|--------------|-----------------|--------------------------|----------------------------|
-| 1 bed, 1 bath | 2.0 hr | £46 | £53 | **£62** |
-| 2 bed, 1 bath | 2.5 hr | £58 | £67 | **£78** |
-| 3 bed, 1–2 bath | 3.0 hr | £69 | £80 | **£93** |
-| 4 bed, 2 bath | 4.0 hr | £92 | £107 | **£124** |
+One rate across all frequencies, per Verdict 3. The customer's saving comes from the shorter
+time a regularly cleaned property needs, not from a second discount on the rate.
 
-**What closing the gap is worth.** A fortnightly 3-bed moving from £69 to the £93 target is
-£24 a visit. Over 26 visits that is **£624 a year from one customer**. Across a hundred
-recurring customers it is **£62,400 a year**, with no new leads, no new cleaners, and no
-extra marketing spend. This is the single largest available gain in the business.
+| Property | Weekly hrs | Fortnightly hrs | Weekly at floor £29 | Fortnightly at floor £29 | **Weekly at target £34** | **Fortnightly at target £34** |
+|----------|-----------|-----------------|--------------------|--------------------------|--------------------------|-------------------------------|
+| 1 bed, 1 bath | 1.5 | 2.0 | £44 | £58 | **£51** | **£68** |
+| 2 bed, 1 bath | 2.0 | 2.5 | £58 | £73 | **£68** | **£85** |
+| 3 bed, 1–2 bath | 2.5 | 3.0 | £73 | £87 | **£85** | **£102** |
+| 4 bed, 2 bath | 3.5 | 4.5 | £102 | £131 | **£119** | **£153** |
 
-Reaching the floor alone (£69 to £80) is £286 a year per customer, or £28,600 across a
-hundred. Take the floor first if the target feels like too big a step.
+Set the hours from observed jobs, not from this table. The hours are the pricing mechanism,
+so getting them wrong is the same as getting the price wrong.
 
-Quote the fortnightly figure first. Weekly may carry a small per-visit reduction for the
-density benefit; monthly carries none, because a monthly property is dirtier each visit and
-takes longer.
+**What closing the gap is worth.** Take a weekly 3-bed currently around £60 a visit. At the
+£29 floor it is £73; at the £34 target, £85.
+
+| Move | Per visit | Per year, 52 visits | **Across 50 weekly customers** |
+|------|-----------|--------------------|-------------------------------|
+| To the floor | +£13 | +£676 | **+£33,800** |
+| To the target | +£25 | +£1,300 | **+£65,000** |
+
+No new leads. No new cleaners. No extra marketing. This is the largest single gain available
+to the business, and it is larger on weekly customers than any other group precisely because
+their margin is currently the thinnest.
+
+Take the floor first if the target feels like too big a step. Staged over two annual reviews
+gets you to target with far less attrition than one jump.
 
 **First clean is priced separately**, at deep or intermediate rate, and said plainly at
 quote stage.
@@ -227,20 +291,25 @@ Do not apply new prices to existing customers overnight. Per
 
 ## What skills may publish, right now
 
-**Never publish £15/hr again.** It is not the price. It has not been the price. Every post
-carrying it generates enquiries that cannot convert.
+**Never publish £15/hr or £18/hr again.** Neither was ever a Coventry Cleans price.
 
-Until the per-visit grid is agreed, skills may publish:
+Skills may publish:
 
-- **Per-visit prices at the current £23/hr equivalent** — £58 for a 2-bed, £69 for a 3-bed,
-  £92 for a 4-bed. These are real prices the business actually honours, which is the bar
+- **Per-visit prices derived from the live rate card** — £55–70 for a 3-bed weekly session,
+  £85–110 for a 4-bed weekly session. These come straight off the website, so the business
+  already honours them
 - **Service and proof with no price at all** — always safe, still generates enquiries
 
 Skills may **not** publish:
 
-- Any hourly rate, for any service (Rule 1)
-- The office or deep clean figures until confirmed (Verdict 3)
-- Any price below the £26.70/hr-equivalent floor once the grid is agreed
+- Any hourly rate, for any service (Rule 1). The website may show one; social posts should
+  not, because a post is where the £12/hr cash-cleaner comparison gets made
+- Any figure for deep clean, end of tenancy, office or short let. Those are survey-priced and
+  a published number becomes a promise you cannot keep on a neglected property
+- Any price below the floor once the new grid is live
+
+**The website is the source.** If a skill and the website disagree, the website wins and this
+file gets corrected. That rule is what stopped the £15 problem being caught for months.
 
 ## When this file changes
 
