@@ -30,7 +30,8 @@ curl localhost:8080/v1/chat/completions -H "Authorization: Bearer sk-own-..." \
 1. Put examples in JSONL (see `train/example-data.jsonl`): real enquiries and the replies you'd stand behind.
 2. Run `train/finetune.py` on a GPU. No GPU? Free Colab or Kaggle notebooks work for 3B-class models.
 3. Drop the `.gguf` into `models/`, then `make register NAME=my-model GGUF=my-model.gguf`.
-4. Iterate: add data, retrain, register again under a new name, compare, keep the winner.
+4. Iterate: add data, retrain, register under a new name, then compare old vs new on the same questions:
+   `API_KEY=sk-own-... ./scripts/compare.py my-model my-model-v2 prompts.txt` (one prompt per line). Keep the winner.
 
 ## Run it 24/7
 
