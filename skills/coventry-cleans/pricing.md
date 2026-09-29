@@ -29,10 +29,9 @@ Published per-visit examples, consistent with £23/hr:
 | 3-bed semi, weekly | £55–70 | 2.4–3.0 hr |
 | 4-bed detached, weekly | £85–110 | 3.7–4.8 hr |
 
-**One ambiguity to resolve.** Two pages on the site appear to disagree about whether £23 is
-the weekly or the fortnightly rate. Confirm which, and make every page agree. Inconsistent
-prices across your own pages cost trust with customers and confuse search engines about what
-you actually charge.
+**Confirmed by Taka, 2026-09-29:** weekly £23, fortnightly £25, one-off £27. Search snippets
+had suggested a page might show £23 against fortnightly; the card above is authoritative. If
+any page shows otherwise, that page is wrong and should be corrected to match.
 
 Survey-priced services — deep clean, end of tenancy, office, short let — are quoted after a
 free survey rather than published. That is the correct approach for condition-driven work and
