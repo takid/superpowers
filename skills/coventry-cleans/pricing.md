@@ -5,19 +5,59 @@ quotes, the website, Google Business. No skill hardcodes a price. Every skill re
 file.
 
 Cost model built: **2026-09-29**, from a stated cleaner rate of £12.71/hr.
+Actual charge-out rate for standard cleans confirmed at **£23/hr**.
 
 ---
 
-## VERDICT: all three published prices are below or at cost
+## VERDICT 1: the advertised price is not the price you charge
 
-| Published price | Cost per charged hour | Outcome |
-|-----------------|----------------------|---------|
-| Standard clean, £15/hr | £18.67 labour alone | **Loss of ~£3.70 per hour sold** |
-| Office clean, £18/hr | £18.67 labour alone | **Loss of ~£0.70 per hour sold** |
-| Deep clean, £120 | £112–149 labour for a 6–8hr job | **Break-even at best, loss if it overruns** |
+**This is the most urgent problem in the business, and it is free to fix.**
 
-Every hour sold at these prices makes the business poorer. Volume makes it worse, not
-better. All three are **suspended** until repriced.
+| | Standard clean |
+|---|---|
+| Advertised in every social post | **£15/hr** |
+| Actually charged | **£23/hr** |
+| Gap | **53%** |
+
+Every enquiry arrives anchored to £15 and gets quoted £23. That does three things, all bad:
+
+1. **Kills conversion at the quote stage.** The customer is not comparing £23 against the
+   market, they are comparing it against the £15 you promised. A 53% jump reads as a
+   bait-and-switch even when the £23 is fair
+2. **Attracts the wrong enquiries.** £15 draws price-shoppers who were never going to pay
+   £23. You are paying to generate leads that cannot convert
+3. **Damages trust at exactly the wrong moment** — the point where they were deciding
+   whether to let a stranger into their home
+
+Fix the advertised number to match reality today. It costs nothing and it is almost
+certainly worth more than any campaign running this quarter. See Rule 3 below.
+
+## VERDICT 2: £23/hr is viable but thin
+
+| Basis | Cost per charged hour | Contribution at £23 |
+|-------|----------------------|---------------------|
+| Labour only | £18.67 | **18.8%** |
+| Labour + materials + travel | ~£20.30 | **~11.7%** |
+
+Above cost, so the business is not bleeding on standard cleans. But **11.7% is well under
+the 30% hard floor** and far under the 40% target. It leaves almost nothing for overhead,
+your own time, or a bad month.
+
+Break-even sits at a productive ratio of 0.70. Above that you make something; below it you
+do not. Which makes measuring the real ratio urgent.
+
+## VERDICT 3: the other published prices are unverified and probably also stale
+
+If the standard rate in the marketing copy was out by 53%, assume the rest is too.
+
+| Published | Status |
+|-----------|--------|
+| Office clean, £18/hr | **Unverified.** At £18 against £18.67 cost this would be a loss. Confirm the real rate |
+| Deep clean, £120 | **Unverified.** At 6–8 hours this would be break-even at best. Confirm the real price |
+| End of tenancy | Never published. Confirm |
+| Airbnb / short let | Never published. Confirm |
+
+Do not publish any of these until the actual current price is confirmed.
 
 ---
 
@@ -125,12 +165,20 @@ from observed jobs, not from hope.
 
 ### CC-HOME-01 Regular clean — recurring, price shown per visit
 
-| Property | Time allowed | At floor (£26.70/hr eq.) | **At target (£31/hr eq.)** |
-|----------|--------------|--------------------------|----------------------------|
-| 1 bed, 1 bath | 2.0 hr | £53 | **£62** |
-| 2 bed, 1 bath | 2.5 hr | £67 | **£78** |
-| 3 bed, 1–2 bath | 3.0 hr | £80 | **£93** |
-| 4 bed, 2 bath | 4.0 hr | £107 | **£124** |
+| Property | Time allowed | Today at £23/hr | At floor (£26.70/hr eq.) | **At target (£31/hr eq.)** |
+|----------|--------------|-----------------|--------------------------|----------------------------|
+| 1 bed, 1 bath | 2.0 hr | £46 | £53 | **£62** |
+| 2 bed, 1 bath | 2.5 hr | £58 | £67 | **£78** |
+| 3 bed, 1–2 bath | 3.0 hr | £69 | £80 | **£93** |
+| 4 bed, 2 bath | 4.0 hr | £92 | £107 | **£124** |
+
+**What closing the gap is worth.** A fortnightly 3-bed moving from £69 to the £93 target is
+£24 a visit. Over 26 visits that is **£624 a year from one customer**. Across a hundred
+recurring customers it is **£62,400 a year**, with no new leads, no new cleaners, and no
+extra marketing spend. This is the single largest available gain in the business.
+
+Reaching the floor alone (£69 to £80) is £286 a year per customer, or £28,600 across a
+hundred. Take the floor first if the target feels like too big a step.
 
 Quote the fortnightly figure first. Weekly may carry a small per-visit reduction for the
 density benefit; monthly carries none, because a monthly property is dirtier each visit and
@@ -177,11 +225,22 @@ Do not apply new prices to existing customers overnight. Per
 
 ---
 
-## Until the grid is filled
+## What skills may publish, right now
 
-Publish **service and proof without a price**. A post that says what we do and why we are
-trusted still generates enquiries. A post carrying £15/hr generates loss-making jobs and
-anchors the market against you.
+**Never publish £15/hr again.** It is not the price. It has not been the price. Every post
+carrying it generates enquiries that cannot convert.
+
+Until the per-visit grid is agreed, skills may publish:
+
+- **Per-visit prices at the current £23/hr equivalent** — £58 for a 2-bed, £69 for a 3-bed,
+  £92 for a 4-bed. These are real prices the business actually honours, which is the bar
+- **Service and proof with no price at all** — always safe, still generates enquiries
+
+Skills may **not** publish:
+
+- Any hourly rate, for any service (Rule 1)
+- The office or deep clean figures until confirmed (Verdict 3)
+- Any price below the £26.70/hr-equivalent floor once the grid is agreed
 
 ## When this file changes
 
