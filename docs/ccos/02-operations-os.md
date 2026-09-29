@@ -40,20 +40,29 @@ yours. Keep it separate from the domestic route map.
 - Booked hours this week
 - Utilisation: booked divided by available
 
-**Connecteam is the live system of record for jobs and schedules.** `CONNECTEAM_GET_JOBS`,
-`CONNECTEAM_GET_SCHEDULERS` and `CONNECTEAM_GET_USERS` via Composio, company
-`jxbzkmsqtlebglxm`. Read from it rather than building a parallel system. It is also where
-check-in and check-out data lives, which makes the measurement below possible without any new
-tooling.
+**There is no system of record for jobs or schedules.** Audited 2026-09-29:
+`CONNECTEAM_GET_JOBS` and `CONNECTEAM_GET_SCHEDULERS` both returned empty. Connecteam holds ten
+people and nothing about the work they do — it is a staff directory, not an operations system.
+Full findings in [reference/connecteam-audit.md](reference/connecteam-audit.md).
+
+**This is the largest structural gap in CCOS.** Utilisation, on-time rate, jobs per cleaner,
+overrun by service code and the productive-hour ratio all have no data source, which means the
+margin model in 05 rests on an assumption that cannot currently be tested. It ranks above
+further pricing work, because pricing accuracy depends on time standards only job data can
+validate.
+
+First decision: either turn on Connecteam's scheduler and time clock so jobs become records,
+or accept that this module has no data and say so plainly rather than reporting numbers nobody
+can source.
 
 **Measure the productive hour ratio. This is the outstanding job in this module.**
 [05 Finance OS](05-finance-os.md) currently assumes 0.866 — roughly six billed hours in seven
 paid — and every margin figure in the business rests on that guess. It is the weakest number
 in the model and the one most within your control.
 
-To measure it: pull two weeks of check-in and check-out against paid hours from Connecteam and
-divide billed hours by paid hours. The data may already exist, in which case this is a query
-rather than a fortnight of waiting. If the real figure is
+To measure it: two weeks of check-in and check-out against paid hours, then divide billed by
+paid. **The data does not exist yet** — see the audit above — so this needs capturing from
+scratch before it can be calculated. If the real figure is
 0.80 the margin floor rises from £29 to £31 per charged-hour equivalent, and the weekly tier
 is closer to break-even than anyone currently believes.
 

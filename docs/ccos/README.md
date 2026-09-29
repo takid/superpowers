@@ -53,8 +53,8 @@ changes what the business actually does.
 |--------|-------|
 | 00 Architecture | Written. Functions and cadence not yet running |
 | 01 Sales | **Inbound is the biggest gap in the business.** No response SLA, no missed-call text, no qualification capture, no quoting system. Outbound exists via `daily-hunter` |
-| 02 Operations | Written. **Connecteam holds live jobs and schedules** — read from it. No service standard documents yet. Productive hour ratio unmeasured |
-| 03 Cleaner | Written. **Connecteam holds live cleaner records.** Employment status needs a decision with advice |
+| 02 Operations | Written. **No data source exists** — Connecteam holds no jobs or schedules. Largest structural gap in CCOS. No service standards yet |
+| 03 Cleaner | Written. Connecteam holds 9 cleaners. **Right to work, DBS and certification are not tracked at all.** Employment status needs a decision with advice |
 | 04 Customer | Nothing running. The 48-hour conversion contact is the highest-value missing piece |
 | 05 Finance | **Cost model built.** Floor set at 30%, target 40%. Payment chasing runs |
 | 06 Claudia | Not started. Correctly blocked until 01–05 produce data |
@@ -73,6 +73,10 @@ googledrive, googlesheets, instagram, linkedin, openai, quickbooks, vapi, vercel
 connected and callable. Clarify is **not** in use. Make is now only for inbound Vapi call
 reports and Google Business posting. Routes in
 [`skills/coventry-cleans/publishing.md`](../../skills/coventry-cleans/publishing.md).
+
+**Acted on 2026-09-29:** Connecteam audited — see
+[reference/connecteam-audit.md](reference/connecteam-audit.md). Two items need doing this week:
+a wage rate steps up on 1 October, and right-to-work records do not exist in any system.
 
 **The three open decisions**, in order of value:
 

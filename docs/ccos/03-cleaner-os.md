@@ -124,6 +124,10 @@ late far more often than over pay being low.
 
 - Meet or exceed the National Living Wage for the cleaner's age band, and verify the
   current rate at every April uprating rather than relying on last year's figure.
+  **Age bands are live here, not theoretical.** Three cleaners are in the 18-to-20 band, and
+  one turns 21 on 1 October 2026, which steps her statutory floor up on that date. Two cleaners
+  have no date of birth recorded, so their correct floor is unknown. Track birthdays as a
+  payroll trigger, not just a nicety.
 - Pay travel time between jobs, or build it into the rate transparently. Cleaners who feel
   they work unpaid hours between jobs leave, and they tell others why.
 - Holiday accrues at 12.07% of hours worked for irregular-hours workers, and it is a real
@@ -186,14 +190,22 @@ costing you until it is fixed.
 
 ## The records
 
-**Connecteam already holds the cleaner records.** `CONNECTEAM_GET_USERS` via Composio, company
-`jxbzkmsqtlebglxm`, plus `CONNECTEAM_GET_CUSTOM_FIELDS` for anything bespoke and
-`CONNECTEAM_CREATE_USERS` for onboarding. Read and extend it rather than starting a new list —
-a second cleaner list is how right-to-work expiry dates get missed.
+**Connecteam holds the cleaner records.** `CONNECTEAM_GET_USERS` via Composio, company
+`jxbzkmsqtlebglxm`. Nine cleaners plus Taka as of the audit on 2026-09-29.
 
-Check which of the fields below Connecteam already carries and which need custom fields adding.
-Certification level, right-to-work expiry and quality score history are the ones most likely
-missing.
+**Audited, and the gaps are the ones that matter.** Full detail in
+[reference/connecteam-audit.md](reference/connecteam-audit.md). Nothing currently tracks right
+to work, DBS, certification level, quality score history, or training. Five of nine cleaners
+have no start date, six of nine have no Worker Type recorded, two have no date of birth.
+
+**The right-to-work gap is the priority.** This module calls it non-negotiable and there is no
+field for it, so for nine cleaners there is no record in the system at all. Add it as a custom
+field and backfill. There is no API tool to create custom fields, so it is manual admin in the
+Connecteam console.
+
+**The missing Worker Type entries are the employment status documentation.** Recorded as
+Employee for three cleaners and blank for six. Under challenge, that is the weak point — see
+the status warning above and in [05 Finance OS](05-finance-os.md).
 
 - Cleaner record with all fields in [reference/data-model.md](reference/data-model.md)
 - Right to work documentation, retained and in date
