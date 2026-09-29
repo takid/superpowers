@@ -1,0 +1,51 @@
+# Your own AI platform. Everything here is open source and free.
+#   make up          -> CPU mode
+#   make up-gpu      -> NVIDIA GPU mode
+services:
+  ollama:
+    image: ollama/ollama:latest
+    restart: unless-stopped
+    volumes:
+      - ollama:/root/.ollama
+      - ./models:/models          # your fine-tuned GGUF files + Modelfiles
+    # not published to the host: only the gateway can reach it
+
+  gateway:
+    build: ./gateway
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      UPSTREAM_URL: http://ollama:11434
+      DB_PATH: /data/gateway.db
+    volumes:
+      - gateway:/data
+    depends_on: [ollama]
+    ports:
+      - "${GATEWAY_PORT:-8080}:8080"
+
+  webui:
+    image: ghcr.io/open-webui/open-webui:main
+    restart: unless-stopped
+    environment:
+      OLLAMA_BASE_URL: http://ollama:11434
+      WEBUI_AUTH: "true"
+    volumes:
+      - webui:/app/backend/data
+    depends_on: [ollama]
+    ports:
+      - "${WEBUI_PORT:-3000}:8080"
+
+  # Optional: 24/7 access from anywhere, no port forwarding, free.
+  # Set CLOUDFLARE_TUNNEL_TOKEN in .env, then: docker compose --profile tunnel up -d
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    profiles: ["tunnel"]
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN:-}
+
+volumes:
+  ollama:
+  gateway:
+  webui:
