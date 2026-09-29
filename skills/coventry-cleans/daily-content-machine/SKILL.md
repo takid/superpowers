@@ -69,15 +69,15 @@ post with a below-cost price generates below-cost jobs.
 
 | Platform | Tone | Length | Hashtags | Route |
 |----------|------|--------|----------|-------|
+| Facebook | Professional, warm | 100–200 words | 3–5 | **LIVE** via Composio |
+| Instagram | Slightly warmer | 80–150 words | 8–12 | **LIVE** via Composio, needs a public image URL |
+| LinkedIn | B2B, business | 150–250 words | 3–5 | **LIVE** via Composio — confirm person vs company page |
 | Google Business | Factual, keyword-rich | 60–100 words | None | **LIVE** via Make |
-| LinkedIn | B2B, business | 150–250 words | 3–5 | Draft only — scenario deactivated 2026-09-29 |
-| Facebook | Professional, warm | 100–200 words | 3–5 | Draft only — manual posting |
-| Instagram | Slightly warmer | 80–150 words | 8–12 | Draft only — manual posting |
 | Nextdoor | Neighbourly, local | 80–120 words | None | Draft only — manual posting |
 
-**Google Business is currently the only live automated route.** The LinkedIn scenario was
-deactivated on 2026-09-29 to free a Make slot for the enquiry call responder, so LinkedIn is
-draft-only until it is switched back on. Check `publishing.md` every run rather than assuming.
+**Four of five channels publish automatically.** Facebook, Instagram and LinkedIn go through
+Composio; Google Business through Make. Only Nextdoor is manual. Check `publishing.md` every
+run rather than assuming — routes have changed twice already.
 
 ---
 
@@ -161,9 +161,9 @@ Every full run produces exactly 10 posts, one per format.
 | 9 | Reaction / Trend | Facebook / Instagram | Respond to a local or national moment |
 | 10 | Behind the Scenes | Instagram / Facebook | Team, van, kit, process |
 
-**Weight the mix toward the live route.** At least 3 of 10 should be Google Business-primary,
-because those are the only posts that will actually publish today. Everything else is drafted
-for manual posting, which is fine — just never report a draft as published.
+**Spread the mix across the live channels**, weighted by the service priority above. LinkedIn
+carries the landlord, agent and commercial angles; Facebook and Instagram carry domestic
+recurring; Google Business carries the local search work.
 
 ---
 
@@ -248,10 +248,18 @@ to the monthly file if it exists.
 
 Read `skills/coventry-cleans/publishing.md`. Post only to routes marked LIVE.
 
+- **Facebook** — `FACEBOOK_CREATE_POST`, or `FACEBOOK_CREATE_PHOTO_POST` with an image. Page
+  id `439312599272453`. Confirm a post id comes back
+- **Instagram** — `INSTAGRAM_CREATE_MEDIA_CONTAINER` first, then
+  `INSTAGRAM_POST_IG_USER_MEDIA_PUBLISH`. In that order. The image must be at a publicly
+  reachable URL because Instagram fetches it
+- **LinkedIn** — `LINKEDIN_CREATE_LINKED_IN_POST`. **State in the report whether it went to the
+  personal profile or the company page** — the connection is Taka's personal profile, so
+  confirm the destination before assuming company
 - **Google Business** — POST to the live Make webhook with `platform` set to exactly
-  `googlebusiness`, plus `title` and `caption`. The scenario replies with the body `accepted`
-  after publishing; **that string is the confirmation.** A 200 without it means nothing posted
-- **LinkedIn, Facebook, Instagram, Nextdoor** — do not attempt. No live route. Draft only
+  `googlebusiness`, plus `title` and `caption`. The scenario replies with the body `accepted`;
+  **that string is the confirmation.** A 200 without it means nothing posted
+- **Nextdoor** — no route. Draft only
 
 **Never treat a bare 200 as proof of publication.** Nine webhooks in the Make account are
 enabled and attached to nothing; they return success and discard the payload. If the
@@ -267,12 +275,12 @@ Mode: Full / Quick
 Posts written: [n]
 
 PUBLISHED
+Facebook         → [n] via Composio (post ids: [...])
+Instagram        → [n] via Composio (container + publish confirmed)
+LinkedIn         → [n] via Composio (destination: person / company)
 Google Business  → [n] via Make (confirmed "accepted")
 
-MANUAL POSTING REQUIRED — no live route
-LinkedIn         → [n] drafted → social-media/posts/linkedin/
-Facebook         → [n] drafted → social-media/posts/facebook/
-Instagram        → [n] drafted → social-media/posts/instagram/
+MANUAL POSTING REQUIRED
 Nextdoor         → [n] drafted → social-media/posts/nextdoor/
 
 Prices used: [from pricing.md] / [omitted — rates suspended pending cost check]

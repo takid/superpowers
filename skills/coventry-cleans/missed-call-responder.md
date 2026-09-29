@@ -161,9 +161,10 @@ two-scenario limit, the upgrade is close to unavoidable.
 
 ## What this does not do yet
 
-- **No CRM record.** The enquiry does not create a Lead in Clarify, so nothing tracks whether
-  it converted, and the response SLA in 01 still cannot be measured. This is the next build and
-  it is what turns an alert into a measurable funnel. See `docs/ccos/reference/data-model.md`
+- **No lead record.** The enquiry does not get logged anywhere, so nothing tracks whether it
+  converted and the response SLA in 01 cannot be measured. Next build: append to a lead log
+  sheet with `GOOGLESHEETS_SPREADSHEETS_VALUES_APPEND` via Composio. Clarify is not in use.
+  See `docs/ccos/reference/data-model.md`
 - **No qualification capture into a record.** Daniel's summary is prose in an email. The nine
   qualification fields in 01 are not captured as structured data. Vapi can return
   `structuredData` against a schema — Katie already does this for recruitment. Giving Daniel a

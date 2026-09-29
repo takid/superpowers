@@ -20,8 +20,9 @@ Without step 3, a fix works for one session and then disappears.
 
 | Path | Status |
 |------|--------|
-| `pricing.md` | **New.** Single source of truth for every published price |
-| `publishing.md` | **New.** Single source of truth for distribution routes |
+| `pricing.md` | Single source of truth for every published price. Cost model built |
+| `publishing.md` | Single source of truth for every external route. **Composio-first** |
+| `missed-call-responder.md` | Runbook for the live enquiry call responder |
 | `daily-content-machine/` | **Fixed.** Canonical social and content skill |
 | `agentic-social-distribution/` | **Retired.** Redirect stub — delete at source |
 | `coventry-cleans-payment-chaser/` | **Fixed.** QuickBooks primary, correct tool IDs, write-back |
@@ -96,16 +97,21 @@ triple-approaching the same facilities manager. Added a mandatory exclusion pass
 
 These are build work, not defects:
 
-- **Chase state and leads belong in Clarify**, the connected and currently unused CRM. The
-  markdown contact log and the payment tracker sheet are both interim.
-- **Facebook and Instagram have no live route.** Either wire the two orphaned webhooks to
-  Make scenarios, or wire `My Buffer Scheduler` to Buffer's API. Decision in `publishing.md`.
-- **`CleanShub — Job Completed` webhook is orphaned.** It is half of the job-completion
-  trigger that Customer OS needs for completion notifications and the 48-hour recurring
-  conversion contact. Worth finishing.
-- **Nothing covers inbound enquiries.** The hunter handles cold outbound only. Response SLA,
-  missed-call text, qualification capture, quoting and follow-up have no skill at all. See
-  Phase 1 in `docs/ccos/README.md`.
+- **Leads have no system of record.** Composio is the integration layer and **Clarify is not
+  in use**, so the lead log goes to Google Sheets via
+  `GOOGLESHEETS_SPREADSHEETS_VALUES_APPEND`. Until it exists, the response SLA and cost per
+  acquisition cannot be measured. This is the next build.
+- **Connecteam is connected and used by no skill.** It holds the real cleaners, jobs and
+  schedules, and is the only realistic place to measure the productive-hour ratio the entire
+  margin model rests on.
+- **`CleanShub — Job Completed` webhook is orphaned.** Half of the job-completion trigger
+  Customer OS needs for the 48-hour conversion contact. A Composio route may beat finishing
+  the Make one.
+- **Qualification capture is prose, not data.** Daniel returns a summary, not the nine
+  structured fields. Vapi can return `structuredData` against a schema — Katie already does
+  for recruitment.
+- **LinkedIn destination unconfirmed.** The Composio connection is Taka's personal profile;
+  the retired Make scenario posted to the company page. Confirm which before trusting it.
 
 ## Blocker
 

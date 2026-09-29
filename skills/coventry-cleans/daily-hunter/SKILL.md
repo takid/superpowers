@@ -83,9 +83,10 @@ Stage is one of: `researched`, `contacted`, `replied`, `quoted`, `won`, `lost`, 
 only reason the next run is smarter than this one. Until the CRM holds this (see below), the
 file is the system of record.
 
-**Target state:** this belongs in Clarify, the connected CRM, as a Lead record per
-`docs/ccos/reference/data-model.md` — with source, channel, score, and full contact history.
-The markdown log is the interim. Do not let it become permanent.
+**Target state:** append each lead to the lead log sheet with
+`GOOGLESHEETS_SPREADSHEETS_VALUES_APPEND` via Composio, as a Lead record per
+`docs/ccos/reference/data-model.md` — source, channel, score, contact history. Clarify is not in
+use. The markdown log is the interim; do not let it become permanent.
 
 ### Step 1: Strategic Search Planning
 

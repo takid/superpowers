@@ -16,6 +16,7 @@ Implements the chase ladder in `docs/ccos/05-finance-os.md`.
 ## Data sources
 
 **Primary: QuickBooks.** The accounting system of record. Invoices and payments live here.
+Reachable both on its own MCP connector and through Composio.
 
 **Secondary: the Google Drive payment tracker.** Sheet ID
 `1D_O1mzukxImLDVs1h5DqyJoi0_QSxfGaBM5sFCEGc78`. Holds the chase state (reminder count,
@@ -125,8 +126,10 @@ For every customer drafted, update the tracker:
 - **L Reminder Count** → increment
 - **M Notes** → append the ladder stage
 
-Use the `google-workspace` skill for the Sheets write — it carries the cell-range helpers.
-If the write cannot be completed, do not claim it was. Output a paste-ready block instead:
+**Use `GOOGLESHEETS_UPSERT_ROWS` via Composio.** That tool exists and is connected, so the
+write-back is a real step, not a suggestion. Confirm `successful: true` before reporting it done.
+
+If the write genuinely fails, do not claim it succeeded. Output a paste-ready block instead:
 
 ```
 TRACKER UPDATE REQUIRED — paste into columns J, K, L
@@ -183,7 +186,7 @@ Next reminder due: [customer] on [date].
 | Outstanding invoices | `mcp__Intuit_QuickBooks__qbo_accounting_get_ar_aging_detail` |
 | Invoice detail | `mcp__Intuit_QuickBooks__qbo_sales_get_invoices` |
 | Read tracker | `mcp__Google_Drive__read_file_content` |
-| Write tracker | `google-workspace` skill (Sheets) |
+| Write tracker | `GOOGLESHEETS_UPSERT_ROWS` via Composio |
 | Create drafts | `mcp__Gmail__create_draft` |
 
 Earlier versions of this skill called `mcp__9952add6__read_file_content` and

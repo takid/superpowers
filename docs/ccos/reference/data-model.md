@@ -203,6 +203,19 @@ The centre of the model. Everything operational and financial hangs off it.
 
 ## Build notes
 
+**Where these live today.** Composio is the integration layer, and Clarify is **not** in use.
+Records go to Google Sheets via `GOOGLESHEETS_SPREADSHEETS_VALUES_APPEND` and
+`GOOGLESHEETS_UPSERT_ROWS` until something better is chosen.
+
+Two entities already have a live system of record and should be read from it, not rebuilt:
+
+- **Cleaner** — Connecteam (`CONNECTEAM_GET_USERS`), company `jxbzkmsqtlebglxm`
+- **Job** — Connecteam (`CONNECTEAM_GET_JOBS`, `CONNECTEAM_GET_SCHEDULERS`)
+
+Invoices live in QuickBooks. So the records genuinely missing a home are **Lead**, **Customer**,
+**Property**, **Quote**, **Complaint** and **Quality Score**. Start with Lead: it is the one
+blocking measurement of the response SLA and cost per acquisition.
+
 **Start smaller than this.** Lead, Customer, Property, Job, Cleaner will carry the business
 a long way. Add Quote, Invoice, Complaint, and Quality Score as the modules that need them
 come online. A data model nobody fills in is worse than a simple one everybody does.

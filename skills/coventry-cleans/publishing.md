@@ -1,52 +1,52 @@
-# Coventry Cleans — Publishing Routes
+# Coventry Cleans — Publishing and Integration Routes
 
-**Single source of truth for how content reaches a platform.** No skill invents a
-distribution method. Every skill reads this file.
+**Single source of truth for how anything reaches an external system.** No skill invents a
+route. Every skill reads this file.
 
-Verified against the live Make account on 2026-09-29 (org 3024838, team 1346028,
-zone eu2).
-
----
-
-## There is no Buffer MCP server
-
-Both social skills previously instructed "use the Buffer MCP server to schedule posts."
-No such server is connected. That step could never execute. It has been removed.
-
-There **is** a Make webhook named "My Buffer Scheduler", but it is not attached to any
-scenario. See the trap below.
+Verified against the live accounts 2026-09-29.
 
 ---
 
-## The trap: nine enabled webhooks attached to nothing
+## Composio is the integration layer
 
-Make lets a webhook stay enabled after its scenario is deleted or was never built. The URL
-still accepts a POST and still returns a success response. Nothing happens. Nothing is
-published. No error is raised.
+Connected and callable: **connecteam, facebook, gmail, google_maps, googledocs, googledrive,
+googlesheets, instagram, linkedin, openai, quickbooks, vapi, vercel**.
 
-**A skill that posts to one of these will report success and publish nothing.** Only the
-two routes marked LIVE below are wired to an active scenario.
+This replaces most of what was previously routed through Make webhooks. Composio has no
+active-scenario limit, needs no webhook plumbing, and the tools are called directly.
+
+**Make is now only used for what Composio cannot do:** receiving inbound Vapi call reports,
+and posting to Google Business Profile.
+
+**Clarify is not in use.** Earlier notes recommending it as the CRM are wrong. Lead and
+customer records live in Google Sheets via Composio until something better is chosen.
 
 ---
 
-## Route table
+## Social publishing — all via Composio
 
-| Platform | Route | Status |
-|----------|-------|--------|
-| ~~LinkedIn~~ | Webhook `qpdjapddd3a4kmf19xlcx4zp7c8p6flg` → scenario "CC LinkedIn Company Post" (9627462) | **DEACTIVATED 2026-09-29.** Draft only. The scenario still exists but is switched off, so the webhook now accepts and discards like the orphaned ones. Its active slot went to the enquiry call responder. Reactivating means switching something else off, or upgrading the plan |
-| **Google Business** | Webhook `n3k1137yomo82ma9mpzut6n9tb8wn8vn` → scenario "Katie Recruitment Call Report" (7693094), googlebusiness branch | **LIVE.** Payload contract confirmed from the blueprint — see below |
-| **Enquiry calls (Daniel)** | Webhook `laa06r5azz38mx2akm8gqbs457a7byxb` → scenario "CC Enquiry Call Responder (Daniel)" (9888931) | **LIVE and verified 2026-09-29.** Vapi end-of-call-report in, enquiry email out. Responds `received`. See [missed-call-responder.md](missed-call-responder.md) |
-| Facebook | Webhook "Facebook Post Publisher Webhook" `bg3bt5t8qzk0pmchc5674yq4fvq00sct` | **DEAD.** No scenario attached. Do not post to it |
-| Instagram | Webhook "Instagram Photo Publisher Webhook" `8eai0ngvgzy0977n68zvc031okotoy41` | **DEAD.** No scenario attached |
-| Buffer | Webhook "My Buffer Scheduler" `0rbxlnmfrxb7vtwg24600dnf6emmakgo` | **DEAD.** No scenario attached |
-| Google Business (duplicate) | Webhook "MY Google Business" `573scovstt2g8fryhn9y2iwd09h21us1` | **DEAD.** No scenario attached. Confusing duplicate of the live route above — retire it |
-| Nextdoor | No route exists | Manual posting only |
+| Platform | Tool | Status |
+|----------|------|--------|
+| **Facebook** | `FACEBOOK_CREATE_POST`, `FACEBOOK_CREATE_PHOTO_POST` | **LIVE.** Page `Coventry Cleans`, id `439312599272453`, with CREATE_CONTENT rights. Also supports scheduling via `FACEBOOK_GET_SCHEDULED_POSTS` / `FACEBOOK_RESCHEDULE_POST` |
+| **Instagram** | `INSTAGRAM_CREATE_MEDIA_CONTAINER` then `INSTAGRAM_POST_IG_USER_MEDIA_PUBLISH` | **LIVE.** Two steps, in that order. Requires a publicly reachable image URL — Instagram fetches it, so a local file or data URI will not work. Check `INSTAGRAM_GET_IG_USER_CONTENT_PUBLISHING_LIMIT` before batches |
+| **LinkedIn** | `LINKEDIN_CREATE_LINKED_IN_POST`, `LINKEDIN_CREATE_ARTICLE_OR_URL_SHARE` | **LIVE**, connected as Taka Nharara (`vF6dNfwX3u`). **Caveat below** |
+| **Google Business** | Make webhook `n3k1137yomo82ma9mpzut6n9tb8wn8vn` | **LIVE.** Not available through Composio. Payload contract below |
+| Nextdoor | No route | Manual posting only |
 
-Base URL for all of the above: `https://hook.eu2.make.com/<udid>`
+### LinkedIn caveat: person versus company page
+
+The Composio connection authenticates **Taka's personal profile**. The retired Make scenario
+posted to the **company page**. Those are different destinations and the audience is different.
+
+Before treating LinkedIn as fully solved, confirm which one
+`LINKEDIN_CREATE_LINKED_IN_POST` actually writes to — check `LINKEDIN_GET_COMPANY_INFO` for the
+organisation URN and test one post. B2B content aimed at facilities managers and landlords
+belongs on the company page; personal-profile posting reaches a different and often better
+audience, but it is a deliberate choice, not a default.
 
 ### Google Business payload contract
 
-Read from the live scenario blueprint, so this is what the router actually matches:
+Read from the live Make scenario blueprint, so this is what the router actually matches:
 
 ```json
 {
@@ -57,78 +57,93 @@ Read from the live scenario blueprint, so this is what the router actually match
 ```
 
 `platform` must be exactly `googlebusiness` or the router sends it down the Vapi branch and
-nothing posts. The scenario responds with the body `accepted` after publishing — **that
-string is the confirmation to look for.** A 200 without it means the post did not go out.
+nothing posts. The scenario replies with the body `accepted` after publishing — **that string
+is the confirmation.** A 200 without it means the post did not go out.
 
-The scenario hardcodes the link as `https://www.coventrycleans.co.uk/` with a `LEARN_MORE`
-call to action, language `en-GB`, and GBP location
-`accounts/118269123454290685182/locations/12709072993323852806`. To post with a different
-link or CTA, the scenario needs editing — it is not settable from the payload.
+Link (`https://www.coventrycleans.co.uk/`), `LEARN_MORE` CTA, `en-GB`, and the GBP location are
+hardcoded in the scenario, not settable per payload.
 
-### The Make plan is at its active-scenario limit
+---
 
-Two scenarios can be active at once and both slots are taken (LinkedIn, and Katie). Anything
-newly built cannot be switched on until a slot is freed or the plan is upgraded. Factor this
-into any plan that assumes a new automation can simply be turned on.
+## Data routes — via Composio
 
-### Facebook connection needs reauthorising
+| Job | Tool | Notes |
+|-----|------|-------|
+| Log a lead | `GOOGLESHEETS_SPREADSHEETS_VALUES_APPEND` | Append-only. The lead log |
+| Update a tracker row | `GOOGLESHEETS_UPSERT_ROWS` | **This is what makes the payment chaser's write-back possible** |
+| Read a sheet | `GOOGLESHEETS_VALUES_GET` | |
+| Find a sheet | `GOOGLESHEETS_SEARCH_SPREADSHEETS`, `GOOGLESHEETS_GET_SHEET_NAMES` | |
+| Cleaners | `CONNECTEAM_GET_USERS` | Company `jxbzkmsqtlebglxm`, Coventry Cleans. **Verified live** |
+| Jobs | `CONNECTEAM_GET_JOBS` | The real job data for Operations OS |
+| Schedules | `CONNECTEAM_GET_SCHEDULERS` | |
+| Invoices and AR | QuickBooks tools | Also available on its own MCP connector |
 
-A `Coventry Cleans Facebook Pages` connection exists in Make but its token expired on
-2026-09-04. Even once a Facebook scenario is built, that connection has to be reconnected
-before it will post.
+**Connecteam is the live source for cleaners and jobs.** Operations OS and Cleaner OS should
+read from it rather than assuming a system needs building. It is also the only place the
+productive-hour ratio can realistically be measured from.
 
-### Other orphaned webhooks in the account
+---
 
-Enabled, attached to no scenario, doing nothing. Listed so nothing builds on them by
-mistake:
+## Make — what remains
 
-- `CleanShub — Job Completed` (`lnd6mqy019swexc0sggdgbzimwylgtvq`) — half-built. This is
-  exactly the job-completion trigger Customer OS needs for completion notifications and
-  the 48-hour conversion contact. Worth finishing.
-- `KatieToCRM Webhook` (`c2x68w3y4ey1ryx3lyf67887aroiyh9c`)
-- `KatieOutbound` (`c7xm24v2rhvtunl6khnpel68rl5y396u`)
-- `TaskadeConnect` (`qwzmu3j6cgpu24glxteepvirn7a45hnm`)
-- `End-of Call-Report` — marked gone by Make. Dead entirely.
+| Route | Status |
+|-------|--------|
+| **Enquiry calls (Daniel)** | Webhook `laa06r5azz38mx2akm8gqbs457a7byxb` → scenario `CC Enquiry Call Responder (Daniel)` (9888931). **LIVE and verified.** Vapi end-of-call-report in, enquiry email out, responds `received`. See [missed-call-responder.md](missed-call-responder.md) |
+| **Google Business** | Webhook `n3k1137yomo82ma9mpzut6n9tb8wn8vn` → scenario `Katie Recruitment Call Report` (7693094). **LIVE.** Dual-purpose, also handles Katie's recruitment call reports |
+| Katie recruitment reports | Same scenario as above. **LIVE** |
+
+Base URL: `https://hook.eu2.make.com/<udid>`
+
+### The orphaned-webhook trap still applies
+
+Nine webhooks in the Make account are enabled and attached to no scenario. They accept a POST,
+return success, and discard the payload silently. Among them: `Facebook Post Publisher`,
+`Instagram Photo Publisher`, `My Buffer Scheduler`, a duplicate `MY Google Business`,
+`CleanShub — Job Completed`, `KatieToCRM`, `KatieOutbound`, `TaskadeConnect`.
+
+**Do not post to any of them.** Facebook and Instagram now go through Composio, so those two
+hooks can be deleted. `CleanShub — Job Completed` is worth finishing as the job-completion
+trigger for Customer OS, though a Composio route may be simpler.
+
+Also dead: the LinkedIn Make scenario (9627462) was deactivated to free an active slot, and
+there is no Buffer MCP server — that publishing step never existed.
+
+### The Make plan limit is no longer pressing
+
+Two active scenarios, both in use (Daniel, and Katie/GBP). Because social publishing moved to
+Composio, the limit now only constrains new inbound webhooks rather than blocking three
+channels.
 
 ---
 
 ## Rules for skills
 
-1. **Publish only to a route marked LIVE.** Everything else is a draft saved to file, and
-   the skill must say plainly that it needs manual posting.
-2. **Never report a post as published** unless the webhook returned a response confirming
-   the downstream module ran. A bare 200 from an orphaned hook is not confirmation.
-3. **Report per platform**, never in aggregate. "6 posts scheduled" hides the fact that
-   four went nowhere.
-4. **Draft everything to file first**, then attempt the route. If the route fails the work
-   is not lost.
+1. **Prefer Composio.** Direct tool calls, no webhook indirection, no scenario limit.
+2. **Publish only to a route marked LIVE.** Everything else is a draft saved to file, and the
+   skill says plainly that it needs manual posting.
+3. **Never report a post as published on a bare success.** For Google Business, look for
+   `accepted`. For Composio, check `successful: true` and the returned post id. A 200 from an
+   orphaned Make hook means nothing happened.
+4. **Report per platform**, never in aggregate. "6 posts scheduled" hides four that went nowhere.
+5. **Draft everything to file first**, then publish. A failed route must not lose the work.
+
+### Never store credentials in this repo
+
+`FACEBOOK_LIST_MANAGED_PAGES` returns a page access token in its response. Tokens, Auth
+Tokens and API keys are never written to a file here, never put in a commit, and never pasted
+into chat. Reference the page **id** (`439312599272453`), not its token.
+
+---
 
 ## Correct reporting format
 
 ```
-LinkedIn      → 2 published via Make (confirmed)
-Google Business → 1 published via Make (confirmed)
-Facebook      → 3 drafted, MANUAL POSTING REQUIRED (no live route)
-Instagram     → 2 drafted, MANUAL POSTING REQUIRED (no live route)
-Nextdoor      → 1 drafted, MANUAL POSTING REQUIRED (no route exists)
+PUBLISHED
+Facebook        → 3 via Composio (post ids returned)
+Instagram       → 2 via Composio (container + publish confirmed)
+LinkedIn        → 2 via Composio (destination: person / company — state which)
+Google Business → 1 via Make (confirmed "accepted")
+
+MANUAL POSTING REQUIRED
+Nextdoor        → 1 drafted → social-media/posts/nextdoor/
 ```
-
----
-
-## To make Facebook and Instagram live
-
-Two options. Both are decisions for Taka, not something a skill does on its own.
-
-**Option A. Build the Make scenarios.** Attach the two existing orphaned webhooks to
-scenarios with Facebook Pages and Instagram Business modules. The webhooks and their URLs
-already exist, so nothing downstream changes once wired.
-
-**Option B. Use Buffer properly.** Buffer has an API. Wire "My Buffer Scheduler" to a
-scenario that calls it, and route Facebook and Instagram through Buffer as originally
-intended.
-
-Option A is fewer moving parts and one less subscription. Option B gives a scheduling
-queue and a calendar view.
-
-Until one is done, Facebook and Instagram are manual. Say so honestly in every run report
-rather than implying they went out.

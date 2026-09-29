@@ -186,6 +186,15 @@ costing you until it is fixed.
 
 ## The records
 
+**Connecteam already holds the cleaner records.** `CONNECTEAM_GET_USERS` via Composio, company
+`jxbzkmsqtlebglxm`, plus `CONNECTEAM_GET_CUSTOM_FIELDS` for anything bespoke and
+`CONNECTEAM_CREATE_USERS` for onboarding. Read and extend it rather than starting a new list —
+a second cleaner list is how right-to-work expiry dates get missed.
+
+Check which of the fields below Connecteam already carries and which need custom fields adding.
+Certification level, right-to-work expiry and quality score history are the ones most likely
+missing.
+
 - Cleaner record with all fields in [reference/data-model.md](reference/data-model.md)
 - Right to work documentation, retained and in date
 - DBS status and date where applicable

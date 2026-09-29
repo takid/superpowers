@@ -53,8 +53,8 @@ changes what the business actually does.
 |--------|-------|
 | 00 Architecture | Written. Functions and cadence not yet running |
 | 01 Sales | **Inbound is the biggest gap in the business.** No response SLA, no missed-call text, no qualification capture, no quoting system. Outbound exists via `daily-hunter` |
-| 02 Operations | Written. No service standard documents yet. Productive hour ratio unmeasured |
-| 03 Cleaner | Written. Employment status needs a decision with advice |
+| 02 Operations | Written. **Connecteam holds live jobs and schedules** — read from it. No service standard documents yet. Productive hour ratio unmeasured |
+| 03 Cleaner | Written. **Connecteam holds live cleaner records.** Employment status needs a decision with advice |
 | 04 Customer | Nothing running. The 48-hour conversion contact is the highest-value missing piece |
 | 05 Finance | **Cost model built.** Floor set at 30%, target 40%. Payment chasing runs |
 | 06 Claudia | Not started. Correctly blocked until 01–05 produce data |
@@ -67,6 +67,12 @@ changes what the business actually does.
   floor all-in; weekly sits at 11.7%
 - Ten defects fixed across the five custom skills, including a £15/hr price that never existed
 - Publishing routes mapped. Two of eleven Make webhooks are real
+
+**Integration layer: Composio.** connecteam, facebook, gmail, google_maps, googledocs,
+googledrive, googlesheets, instagram, linkedin, openai, quickbooks, vapi, vercel — all
+connected and callable. Clarify is **not** in use. Make is now only for inbound Vapi call
+reports and Google Business posting. Routes in
+[`skills/coventry-cleans/publishing.md`](../../skills/coventry-cleans/publishing.md).
 
 **The three open decisions**, in order of value:
 

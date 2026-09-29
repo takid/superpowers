@@ -40,13 +40,20 @@ yours. Keep it separate from the domestic route map.
 - Booked hours this week
 - Utilisation: booked divided by available
 
+**Connecteam is the live system of record for jobs and schedules.** `CONNECTEAM_GET_JOBS`,
+`CONNECTEAM_GET_SCHEDULERS` and `CONNECTEAM_GET_USERS` via Composio, company
+`jxbzkmsqtlebglxm`. Read from it rather than building a parallel system. It is also where
+check-in and check-out data lives, which makes the measurement below possible without any new
+tooling.
+
 **Measure the productive hour ratio. This is the outstanding job in this module.**
 [05 Finance OS](05-finance-os.md) currently assumes 0.866 — roughly six billed hours in seven
 paid — and every margin figure in the business rests on that guess. It is the weakest number
 in the model and the one most within your control.
 
-To measure it: log check-in and check-out against paid hours for two full weeks, then divide
-billed hours by paid hours. Two weeks of honest timekeeping settles it. If the real figure is
+To measure it: pull two weeks of check-in and check-out against paid hours from Connecteam and
+divide billed hours by paid hours. The data may already exist, in which case this is a query
+rather than a fortnight of waiting. If the real figure is
 0.80 the margin floor rises from £29 to £31 per charged-hour equivalent, and the weekly tier
 is closer to break-even than anyone currently believes.
 
