@@ -26,6 +26,7 @@ with systems. It becomes a systems company that delivers cleaning.
 | # | Module | Owns | File |
 |---|--------|------|------|
 | 00 | Architecture | Structure, roles, operating cadence, where decisions get made | [00-architecture.md](00-architecture.md) |
+| 02a | Connecteam Buildout | How to make Connecteam the operations system of record | [02a-connecteam-buildout.md](02a-connecteam-buildout.md) |
 | 01 | Sales OS | Lead to booked job. Response, qualification, pricing, follow-up, conversion | [01-sales-os.md](01-sales-os.md) |
 | 02 | Operations OS | Booked job to completed job. Scheduling, dispatch, delivery standards, quality | [02-operations-os.md](02-operations-os.md) |
 | 03 | Cleaner OS | Recruitment, onboarding, training, certification, pay, performance, retention | [03-cleaner-os.md](03-cleaner-os.md) |
@@ -53,8 +54,8 @@ changes what the business actually does.
 |--------|-------|
 | 00 Architecture | Written. Functions and cadence not yet running |
 | 01 Sales | **Inbound is the biggest gap in the business.** No response SLA, no missed-call text, no qualification capture, no quoting system. Outbound exists via `daily-hunter` |
-| 02 Operations | Written. **No data source exists** — Connecteam holds no jobs or schedules. Largest structural gap in CCOS. No service standards yet |
-| 03 Cleaner | Written. Connecteam holds 9 cleaners. **Right to work, DBS and certification are not tracked at all.** Employment status needs a decision with advice |
+| 02 Operations | Written. **No data source exists** — no Time Clock or Scheduler instance, so no jobs, shifts or hours. Largest structural gap. Build plan in [02a](02a-connecteam-buildout.md). Ten Forms already exist but are per-site, not per-service |
+| 03 Cleaner | Written. Connecteam holds 9 cleaners on Zero Hours Contracts of Employment, so the employed basis is documented and the cost model is right. **Right to work, DBS and certification are not tracked at all** |
 | 04 Customer | Nothing running. The 48-hour conversion contact is the highest-value missing piece |
 | 05 Finance | **Cost model built.** Floor set at 30%, target 40%. Payment chasing runs |
 | 06 Claudia | Not started. Correctly blocked until 01–05 produce data |

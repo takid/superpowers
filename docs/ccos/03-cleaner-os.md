@@ -203,9 +203,17 @@ field for it, so for nine cleaners there is no record in the system at all. Add 
 field and backfill. There is no API tool to create custom fields, so it is manual admin in the
 Connecteam console.
 
-**The missing Worker Type entries are the employment status documentation.** Recorded as
-Employee for three cleaners and blank for six. Under challenge, that is the weak point — see
-the status warning above and in [05 Finance OS](05-finance-os.md).
+**The employment basis is documented and the status risk is smaller than feared.** A Zero Hours
+Contract of Employment exists in Connecteam Forms, so cleaners are engaged as employed workers
+rather than self-employed contractors. Holiday accrual at 12.07%, employer National Insurance
+and pension therefore genuinely apply, which is exactly the basis the cost model in
+[05 Finance OS](05-finance-os.md) is built on.
+
+The remaining gap is administrative, not structural: **Worker Type is recorded for three of nine
+cleaners and blank for six.** The position is contracted but inconsistently logged. Backfill it.
+
+Also: two near-identical Zero Hours Contract forms exist. Retire one and date the survivor, or
+nobody will know which is current.
 
 - Cleaner record with all fields in [reference/data-model.md](reference/data-model.md)
 - Right to work documentation, retained and in date

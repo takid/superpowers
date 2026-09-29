@@ -51,9 +51,14 @@ margin model in 05 rests on an assumption that cannot currently be tested. It ra
 further pricing work, because pricing accuracy depends on time standards only job data can
 validate.
 
-First decision: either turn on Connecteam's scheduler and time clock so jobs become records,
-or accept that this module has no data and say so plainly rather than reporting numbers nobody
-can source.
+**The route out is written up as [02a Connecteam Buildout](02a-connecteam-buildout.md).** Short
+version: turn on Time Clock first, create jobs as service-code parents with customer sub-jobs,
+then turn on Scheduler. It is Connecteam admin work, not automation — every Connecteam tool
+Composio exposes is read-only apart from creating users.
+
+Better news than the audit first suggested: ten Forms already exist, including an 89-field
+office walkthrough survey, and cleaners are on Zero Hours Contracts of Employment — so the
+employed-worker basis the cost model in 05 assumes is correct and documented.
 
 **Measure the productive hour ratio. This is the outstanding job in this module.**
 [05 Finance OS](05-finance-os.md) currently assumes 0.866 — roughly six billed hours in seven
