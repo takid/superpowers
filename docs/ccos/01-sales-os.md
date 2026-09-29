@@ -49,6 +49,20 @@ competitor.
 plain: a line saying we missed them, who we are, and asking what they need doing and
 where. A missed call with no follow-up is money already spent on marketing, thrown away.
 
+> **Built 2026-09-29.** Make scenario `CC Missed Call Responder` (9888931), webhook
+> `https://hook.eu2.make.com/laa06r5azz38mx2akm8gqbs457a7byxb`. Emails the number to Taka
+> instantly with a tap-to-call link, and texts the caller once Twilio is wired. Runbook,
+> payload contract, setup steps and the two open blockers are in
+> [`skills/coventry-cleans/missed-call-responder.md`](../../skills/coventry-cleans/missed-call-responder.md).
+>
+> **Not yet live.** Two things stand in the way: the Make plan is at its active-scenario
+> limit, and nothing currently detects a missed call because the business number is a mobile.
+> The fix for the second is a Twilio number in front of the mobile, which also supplies the
+> sending number for the text.
+>
+> **Before going live, decide where customer replies land.** An automated text inviting a
+> reply, with nobody reading the replies, is worse than sending nothing.
+
 ## Qualification
 
 Nine things. Gather them in conversation, not as an interrogation. If you have the

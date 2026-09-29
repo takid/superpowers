@@ -95,11 +95,12 @@ Sales OS response rules and the pricing grid. Finance OS true labour cost and th
 margin floor. These two together stop you selling work that loses money and losing
 work you already paid to generate. Nothing else matters until these are live.
 
-> **Status: half done.** The cost model and margin floor are built (05), and the pricing grid
-> exists in `pricing.md`. The Sales OS response rules are not built — there is still no
-> missed-call text, no response SLA, and no qualification capture. That half is now the single
-> highest-return build in the business, and the missed-call text is buildable this week with
-> Twilio and Make, both already connected.
+> **Status: cost model done, response rules part-built.** The cost model and margin floor are
+> live (05) and the pricing grid is in `pricing.md`. The missed-call responder is **built but
+> not switched on** — Make scenario 9888931, blocked on the plan's active-scenario limit and
+> on nothing currently detecting a missed call. Runbook:
+> [`skills/coventry-cleans/missed-call-responder.md`](../../skills/coventry-cleans/missed-call-responder.md).
+> Response SLA measurement and qualification capture are still unbuilt.
 
 **Phase 2, weeks 5 to 8. Make delivery repeatable.**
 Operations OS service standards and the job record. Cleaner OS onboarding and Level 1

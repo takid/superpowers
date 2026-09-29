@@ -34,7 +34,8 @@ two routes marked LIVE below are wired to an active scenario.
 | Platform | Route | Status |
 |----------|-------|--------|
 | **LinkedIn** | Webhook `qpdjapddd3a4kmf19xlcx4zp7c8p6flg` → scenario "CC LinkedIn Company Post" (9627462) | **LIVE.** Active, 7 executions. Handles text posts and image posts via a router |
-| **Google Business** | Webhook `n3k1137yomo82ma9mpzut6n9tb8wn8vn` → scenario "Katie Recruitment Call Report" (7693094), googlebusiness branch | **LIVE, but test before relying on it.** Scenario is active and carries a `google-my-business / createAPost` module. It is a dual-purpose scenario also handling Vapi call reports, so the payload must hit the right router branch |
+| **Google Business** | Webhook `n3k1137yomo82ma9mpzut6n9tb8wn8vn` → scenario "Katie Recruitment Call Report" (7693094), googlebusiness branch | **LIVE.** Payload contract confirmed from the blueprint — see below |
+| Missed call responder | Webhook `laa06r5azz38mx2akm8gqbs457a7byxb` → scenario "CC Missed Call Responder" (9888931) | **BUILT, NOT ACTIVE.** Blocked on the Make plan limit. See [missed-call-responder.md](missed-call-responder.md) |
 | Facebook | Webhook "Facebook Post Publisher Webhook" `bg3bt5t8qzk0pmchc5674yq4fvq00sct` | **DEAD.** No scenario attached. Do not post to it |
 | Instagram | Webhook "Instagram Photo Publisher Webhook" `8eai0ngvgzy0977n68zvc031okotoy41` | **DEAD.** No scenario attached |
 | Buffer | Webhook "My Buffer Scheduler" `0rbxlnmfrxb7vtwg24600dnf6emmakgo` | **DEAD.** No scenario attached |
@@ -42,6 +43,39 @@ two routes marked LIVE below are wired to an active scenario.
 | Nextdoor | No route exists | Manual posting only |
 
 Base URL for all of the above: `https://hook.eu2.make.com/<udid>`
+
+### Google Business payload contract
+
+Read from the live scenario blueprint, so this is what the router actually matches:
+
+```json
+{
+  "platform": "googlebusiness",
+  "title": "Short post title",
+  "caption": "The post body. This becomes the GBP summary."
+}
+```
+
+`platform` must be exactly `googlebusiness` or the router sends it down the Vapi branch and
+nothing posts. The scenario responds with the body `accepted` after publishing — **that
+string is the confirmation to look for.** A 200 without it means the post did not go out.
+
+The scenario hardcodes the link as `https://www.coventrycleans.co.uk/` with a `LEARN_MORE`
+call to action, language `en-GB`, and GBP location
+`accounts/118269123454290685182/locations/12709072993323852806`. To post with a different
+link or CTA, the scenario needs editing — it is not settable from the payload.
+
+### The Make plan is at its active-scenario limit
+
+Two scenarios can be active at once and both slots are taken (LinkedIn, and Katie). Anything
+newly built cannot be switched on until a slot is freed or the plan is upgraded. Factor this
+into any plan that assumes a new automation can simply be turned on.
+
+### Facebook connection needs reauthorising
+
+A `Coventry Cleans Facebook Pages` connection exists in Make but its token expired on
+2026-09-04. Even once a Facebook scenario is built, that connection has to be reconnected
+before it will post.
 
 ### Other orphaned webhooks in the account
 
