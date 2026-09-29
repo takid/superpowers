@@ -33,9 +33,9 @@ two routes marked LIVE below are wired to an active scenario.
 
 | Platform | Route | Status |
 |----------|-------|--------|
-| **LinkedIn** | Webhook `qpdjapddd3a4kmf19xlcx4zp7c8p6flg` → scenario "CC LinkedIn Company Post" (9627462) | **LIVE.** Active, 7 executions. Handles text posts and image posts via a router |
+| ~~LinkedIn~~ | Webhook `qpdjapddd3a4kmf19xlcx4zp7c8p6flg` → scenario "CC LinkedIn Company Post" (9627462) | **DEACTIVATED 2026-09-29.** Draft only. The scenario still exists but is switched off, so the webhook now accepts and discards like the orphaned ones. Its active slot went to the enquiry call responder. Reactivating means switching something else off, or upgrading the plan |
 | **Google Business** | Webhook `n3k1137yomo82ma9mpzut6n9tb8wn8vn` → scenario "Katie Recruitment Call Report" (7693094), googlebusiness branch | **LIVE.** Payload contract confirmed from the blueprint — see below |
-| Missed call responder | Webhook `laa06r5azz38mx2akm8gqbs457a7byxb` → scenario "CC Missed Call Responder" (9888931) | **BUILT, NOT ACTIVE.** Blocked on the Make plan limit. See [missed-call-responder.md](missed-call-responder.md) |
+| **Enquiry calls (Daniel)** | Webhook `laa06r5azz38mx2akm8gqbs457a7byxb` → scenario "CC Enquiry Call Responder (Daniel)" (9888931) | **LIVE and verified 2026-09-29.** Vapi end-of-call-report in, enquiry email out. Responds `received`. See [missed-call-responder.md](missed-call-responder.md) |
 | Facebook | Webhook "Facebook Post Publisher Webhook" `bg3bt5t8qzk0pmchc5674yq4fvq00sct` | **DEAD.** No scenario attached. Do not post to it |
 | Instagram | Webhook "Instagram Photo Publisher Webhook" `8eai0ngvgzy0977n68zvc031okotoy41` | **DEAD.** No scenario attached |
 | Buffer | Webhook "My Buffer Scheduler" `0rbxlnmfrxb7vtwg24600dnf6emmakgo` | **DEAD.** No scenario attached |

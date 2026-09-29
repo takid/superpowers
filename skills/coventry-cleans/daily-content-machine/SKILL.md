@@ -69,14 +69,15 @@ post with a below-cost price generates below-cost jobs.
 
 | Platform | Tone | Length | Hashtags | Route |
 |----------|------|--------|----------|-------|
-| LinkedIn | B2B, business | 150–250 words | 3–5 | **LIVE** via Make |
-| Google Business | Factual, keyword-rich | 60–100 words | None | **LIVE** via Make, test first |
+| Google Business | Factual, keyword-rich | 60–100 words | None | **LIVE** via Make |
+| LinkedIn | B2B, business | 150–250 words | 3–5 | Draft only — scenario deactivated 2026-09-29 |
 | Facebook | Professional, warm | 100–200 words | 3–5 | Draft only — manual posting |
 | Instagram | Slightly warmer | 80–150 words | 8–12 | Draft only — manual posting |
 | Nextdoor | Neighbourly, local | 80–120 words | None | Draft only — manual posting |
 
-LinkedIn is the only fully proven automated route, and it is the B2B channel. That suits
-the service priority below: the highest-value work is the work the live route reaches.
+**Google Business is currently the only live automated route.** The LinkedIn scenario was
+deactivated on 2026-09-29 to free a Make slot for the enquiry call responder, so LinkedIn is
+draft-only until it is switched back on. Check `publishing.md` every run rather than assuming.
 
 ---
 
@@ -160,9 +161,9 @@ Every full run produces exactly 10 posts, one per format.
 | 9 | Reaction / Trend | Facebook / Instagram | Respond to a local or national moment |
 | 10 | Behind the Scenes | Instagram / Facebook | Team, van, kit, process |
 
-**Weight the mix toward the live routes.** At least 3 of 10 should be LinkedIn-primary and
-at least 2 Google Business-primary, because those are the only posts that will actually
-publish today.
+**Weight the mix toward the live route.** At least 3 of 10 should be Google Business-primary,
+because those are the only posts that will actually publish today. Everything else is drafted
+for manual posting, which is fine — just never report a draft as published.
 
 ---
 
@@ -247,11 +248,10 @@ to the monthly file if it exists.
 
 Read `skills/coventry-cleans/publishing.md`. Post only to routes marked LIVE.
 
-- **LinkedIn** — POST to the live Make webhook. Confirm the response indicates the
-  LinkedIn module ran
-- **Google Business** — POST to the live Make webhook with a payload that hits the
-  googlebusiness router branch. Test with one post before sending a batch
-- **Facebook, Instagram, Nextdoor** — do not attempt. No live route. Draft only
+- **Google Business** — POST to the live Make webhook with `platform` set to exactly
+  `googlebusiness`, plus `title` and `caption`. The scenario replies with the body `accepted`
+  after publishing; **that string is the confirmation.** A 200 without it means nothing posted
+- **LinkedIn, Facebook, Instagram, Nextdoor** — do not attempt. No live route. Draft only
 
 **Never treat a bare 200 as proof of publication.** Nine webhooks in the Make account are
 enabled and attached to nothing; they return success and discard the payload. If the
@@ -267,10 +267,10 @@ Mode: Full / Quick
 Posts written: [n]
 
 PUBLISHED
-LinkedIn         → [n] via Make (confirmed)
-Google Business  → [n] via Make (confirmed)
+Google Business  → [n] via Make (confirmed "accepted")
 
 MANUAL POSTING REQUIRED — no live route
+LinkedIn         → [n] drafted → social-media/posts/linkedin/
 Facebook         → [n] drafted → social-media/posts/facebook/
 Instagram        → [n] drafted → social-media/posts/instagram/
 Nextdoor         → [n] drafted → social-media/posts/nextdoor/
