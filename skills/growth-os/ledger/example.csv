@@ -1,0 +1,8 @@
+row_id,ts,agent,action,channel,segment,variant,contact_ref,value_gbp,outcome,ref_row_id,note
+20261019-lead-responder-001,2026-10-19T08:12:00+01:00,lead-responder,enquiry,web_form,domestic/CV5/deep-clean,,sarah.k@example.com,,,,3 bed semi Earlsdon
+20261019-lead-responder-002,2026-10-19T08:15:00+01:00,lead-responder,reply,email,domestic/CV5/deep-clean,lr-first-reply-v2,sarah.k@example.com,,,20261019-lead-responder-001,3 min
+20261019-quote-closer-001,2026-10-19T09:40:00+01:00,quote-closer,quote,email,domestic/CV5/deep-clean,qc-quote-v1,sarah.k@example.com,165,,20261019-lead-responder-001,
+20261019-quote-closer-002,2026-10-19T16:02:00+01:00,quote-closer,outcome,email,domestic/CV5/deep-clean,qc-quote-v1,sarah.k@example.com,165,booked,20261019-quote-closer-001,Sat 25 Oct 09:00
+20261019-lead-responder-003,2026-10-19T13:30:00+01:00,lead-responder,enquiry,whatsapp,domestic/CV4/end-of-tenancy,,07700900123,,,,student let Canley
+20261019-lead-responder-004,2026-10-19T13:34:00+01:00,lead-responder,reply,whatsapp,domestic/CV4/end-of-tenancy,lr-first-reply-v2,07700900123,,,20261019-lead-responder-003,4 min
+20261021-lead-responder-001,2026-10-21T13:35:00+01:00,lead-responder,outcome,whatsapp,domestic/CV4/end-of-tenancy,lr-first-reply-v2,07700900123,,no_reply,20261019-lead-responder-004,48h window closed

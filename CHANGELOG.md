@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- **Growth OS**: a growth operating layer for Coventry Cleans. New `growth-os` skill with scoreboard, feedback loop, gates, coverage map, schedule, and ledger schema; eleven role agents in `agents/`; seeded playbooks the learning loop rewrites from ledger data; structural test at `tests/growth-os/validate.sh`; design note at `docs/growth-os/design.md`.
+
 ## [5.0.5] - 2026-03-17
 
 ### Fixed

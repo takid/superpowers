@@ -185,3 +185,9 @@ For community support, questions, and sharing what you're building with Superpow
 - **Discord**: [Join us on Discord](https://discord.gg/Jd8Vphy9jq)
 - **Issues**: https://github.com/obra/superpowers/issues
 - **Marketplace**: https://github.com/obra/superpowers-marketplace
+
+## Growth OS (Coventry Cleans fork)
+
+This fork adds a growth operating layer for Coventry Cleans on top of the superpowers workflow. Eleven role agents in `agents/` (lead response, quoting, prospecting, local authority, content, reputation, operations, retention, cash, recruiting, and a learning loop) run from living playbooks in `skills/growth-os/playbooks/`, write every action to one ledger, and are rewritten weekly by the learning loop from that ledger.
+
+Start with the `growth-os` skill. Design note: `docs/growth-os/design.md`. Structural test: `tests/growth-os/validate.sh`.
